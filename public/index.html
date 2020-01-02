@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>socket.io客户端</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        #app{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        
+        }
+        h1{
+            height: 80px;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .loginBox{
+           height: 200px;
+           padding: 10px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>聊天室</h1>
+        <div class="loginBox">
+            <input type="text" v-model="userName">
+            <button @click="login()">登陆</button>
+        </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: [
+                {name: '房间1', id: 1},
+                {name: '房间2', id: 2},
+                {name: '房间3', id: 3}
+            ],
+            userName: ''
+        },
+        methods: {
+            login(){
+                console.log(111111);
+                if (this.userName.trim()) {
+                    console.log(2222222);
+                    window.location.href = 'http://localhost:3000/roomList.html?userName=' +  this.userName;
+                }else{
+                    alert('用户名不能为空')
+                }
+                
+            }
+        }
+    })
+   
+   
+</script>
+</html>

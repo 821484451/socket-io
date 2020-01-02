@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/socket.io/2.3.0/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>socket.io客户端</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        };
+        ul,li{
+            list-style: none;
+        };
+        
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        #app{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        h1{
+            height: 80px;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+        }
+        li{
+            height: 50px;
+            font-size: 25px;
+            padding-left: 20px;
+            line-height: 50px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>聊天室列表</h1>
+        <ul>
+            <li v-for="(item, index) in list" @click="checkRoom(item)">{{item.name}}</li>
+        </ul>
+       
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: [
+                {name: '房间1', id: 1},
+                {name: '房间2', id: 2},
+                {name: '房间3', id: 3}
+            ],
+            userName: ''
+        },
+        methods: {
+            checkRoom(item){
+                let self = this;
+                var userName = window.location.search.split('?')[1].split('=')[1];
+                console.log(item.id);
+               
+                window.location.href = 'http://localhost:3000/room'+ item.id +'.html?userName=' + userName;
+            }
+        }
+    })
+   
+</script>
+</html>
